@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class SeriesController extends Controller
 {
     public function index(Request $request) {
-        $series = $request->url();
+        $series = Serie::all();
 
         return view('series.index', compact('series'));
     }
@@ -22,10 +22,9 @@ class SeriesController extends Controller
     {
         $nome = $request->nome;
 
-        $serie = new Serie();
-        $serie->nome = $nome;
+        $serie = Serie::create($request->all());
 
-;       $serie->save();
+        echo "Série com o ID {$serie->id} criada: {$serie->nome}";
     }
 
 }
