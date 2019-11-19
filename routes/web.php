@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 route::get('/series', 'SeriesController@index');
+route::get('/series/criar', 'SeriesController@create');
