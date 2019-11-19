@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class SeriesController extends Controller
 {
-    public function listarSeries() {
-        echo("OLÁ MUNDO !");
+    public function index(Request $request) {
+        echo $request->url();
     }
 
 }

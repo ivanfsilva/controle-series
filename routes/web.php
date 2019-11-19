@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/series', 'SeriesController@listarSeries');
+route::get('/series', 'SeriesController@index');
