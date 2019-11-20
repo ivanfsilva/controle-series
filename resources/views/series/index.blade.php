@@ -11,11 +11,18 @@ Séries
         </div>
     @endif
 
-
     <a href="/series/criar" class="btn btn-dark mb-2">Adicionar</a>
 
     @foreach($series as $serie)
-        <li class="list-group-item">{{$serie->nome}}</li>
+        <li class="list-group-item">
+            {{$serie->nome}}
+            <form method="post" action="/series/{{$serie->id}}"
+                    onsubmit="return confirm('Tem Certeza que deseja remover {{ addslashes($serie->nome) }}?')">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">Excluir</button>
+            </form>
+        </li>
     @endforeach
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
