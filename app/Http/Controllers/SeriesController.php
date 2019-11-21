@@ -33,7 +33,7 @@ class SeriesController extends Controller
             ->flash('mensagem',
                 "Série com o ID {$serie->id} criada: {$serie->nome}");
 
-        return redirect('/series');
+        return redirect()->route('listar_series');
     }
 
     public function destroy(Request $request)
@@ -44,7 +44,7 @@ class SeriesController extends Controller
             ->flash('mensagem',
                 "Série excluída com sucesso");
 
-        return redirect('/series');
+        return redirect()->route('listar_series');
     }
 
 }
