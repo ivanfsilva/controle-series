@@ -15,9 +15,23 @@ Séries
 
     @foreach($series as $serie)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{$serie->nome}}
+
+            <span id="nome-serie-{{ $serie->id }}">{{ $serie->nome }}</span>
+
+            <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
+                <input type="text" class="form-control" value="{{ $serie->nome }}" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="editarSerie({{ $serie->id }})">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    @csrf
+                </div>
+            </div>
 
             <span class="d-flex">
+                <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
+                    <i class="class fas fa-edit"></i>
+                </button>
                 <a href="/series/ {{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">
                     <i class="class fa fa-external-link-alt"></i>
                 </a>
@@ -38,5 +52,20 @@ Séries
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/vendors/all.min.js"></script>
+
+    <script>
+        function toggleInput(serieId) {
+            const nomeSerieEl = document.getElementById(`nome-serie-${serieId}`);
+            const inputSerieEl = document.getElementById(`input-nome-serie-${serieId}`);
+
+            if (nomeSerieEl.hasAttribute('hidden')) {
+                nomeSerieEl.removeAttribute('hidden');
+                inputSerieEl.hidden = true;
+            } else {
+                inputSerieEl.removeAttribute('hidden');
+                nomeSerieEl.hidden = true;
+            }
+        }
+    </script>
 
 @endsection
