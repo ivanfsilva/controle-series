@@ -66,6 +66,35 @@ Séries
                 nomeSerieEl.hidden = true;
             }
         }
+
+        function editarSerie(serieId) {
+
+           let formData = new FormData();
+           const nome = document
+               .querySelector(`#input-nome-serie-${serieId} > input`)
+               .value;
+
+           const token = document.querySelector(`input[name="_token"]`).value;
+
+           formData.append('nome', nome);
+           formData.append('_token', token);
+
+            // enviar para uma rota
+            const url = `/series/${serieId}/editaNome`;
+
+            // fazer um ama requisição
+
+            fetch(url, {
+                body: formData,
+                method: 'POST'
+            }).then(() =>
+            {
+                toggleInput(serieId);
+                document.getElementById(`nome-serie-${serieId}`).textContent = nome;
+
+            });
+        }
+
     </script>
 
 @endsection
