@@ -12,7 +12,7 @@
                 Temporada {{ $temporada->numero }}
             </a>
             <scan class="badge badge-secondary">
-                0 / {{ $temporada->episodios->count() }}
+                {{ $temporada->getEpisodiosAssistidos()->count() }} / {{ $temporada->episodios->count() }}
             </scan>
         </li>
 
