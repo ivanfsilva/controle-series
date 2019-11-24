@@ -8,11 +8,11 @@
 
     @foreach($temporadas as $temporada)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="#">
+            <a href="/temporadas/{{ $temporada->id }}/episodios">
                 Temporada {{ $temporada->numero }}
             </a>
             <scan class="badge badge-secondary">
-                {{ $temporada->episodios->count() }}
+                0 / {{ $temporada->episodios->count() }}
             </scan>
         </li>
 
